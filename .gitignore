@@ -1,0 +1,12 @@
+#Test files
+*.ipynb
+*.sh
+
+#Folders
+/data
+src/__pycache__
+src/models/sentiment/__pycache__
+src/spark/__pycache__
+src/spark/layers/stage/__pycache__
+src/spark/layers/universal/__pycache__
+src/spark/parameters/__pycache__
