@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: airflow
+  labels:
+    type: orchestation
+spec:
+  restartPolicy: Always
+  containers:
+  - name: airflow
+    image: apache/airflow:latest
+    env: 
+      - name: AIRFLOW_HOME
+        value: /opt/airflow/
+    args: ["pip", "install", "apache-airflow"]
+    command: ["bash", "-c", "airflow db init && airflow webserver && airflow users create -e marcelo.garcia.c92@gmail.com -f marcelo -l garcia -p pwd -r Admin -u mgarcia"]
+    ports:
+    - containerPort: 8080
+    #livenessProbe:
+    #  exec:
+    #    command:
+    #    - cat 
+    #    - /usr/local/airflow/airflow-webserver.pid
+    #  initialDelaySeconds: 10
+    #  periodSeconds: 30
+    #volumeMounts: 
+    #  - name: airflow
+    #    mountPath: /opt/airflow/
+  #volumes:    
+  #  - name: airflow
+  #    persistentVolumeClaim:
+  #      claimName: airflow
+

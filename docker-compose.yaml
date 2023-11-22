@@ -1,0 +1,73 @@
+version: '3.7'
+
+services:
+  # Airflow PostgreSQL Database
+  postgres:
+    image: postgres:16.0
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  # Apache Airflow Webserver
+  airflow_webserver:
+    command: bash -c "airflow db init && airflow webserver && airflow users  create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin"
+    image: apache/airflow:latest
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - LOAD_EX=${LOAD_EX}
+      - EXECUTOR=${EXECUTOR}
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./requirements.txt:/opt/airflow/requirements.txt
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+
+  # Apache Spark Master Node
+  spark_master:
+    image: bitnami/spark:3
+    container_name: spark_master
+    ports:
+      - 8085:8080
+    environment:
+      - SPARK_UI_PORT=${SPARK_UI_PORT}
+      - SPARK_MODE=${SPARK_MODE}
+      - SPARK_RPC_AUTHENTICATION_ENABLED=${SPARK_RPC_AUTHENTICATION_ENABLED}
+      - SPARK_RPC_ENCRYPTION_ENABLED=${SPARK_RPC_ENCRYPTION_ENABLED}
+    volumes:
+      - ./:/home
+      - spark_data:/opt/bitnami/spark/data
+    networks:
+      - default
+      - kafka_network
+
+#volumes for data
+volumes:
+  spark_data:
+
+#network for Kafka
+networks:
+  kafka_network:
+    driver: bridge
+  default:
+    external:
+      name: docker_streaming
+    
+    

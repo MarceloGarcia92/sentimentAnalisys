@@ -1,15 +1,10 @@
-FROM apache/airflow AS airflow
+FROM python:3.8-slim-buster
 
-USER root
+ENV AIRFLOW_HOME /usr/local/airflow
 
-RUN apt-get update
+RUN pip install --no-cache-dir apache-airflow
 
-USER airflow
+#EXPOSE 8080
 
-ENV PYTHONPATH "${PYTHONPATH}:/opt/airflow/"
-
-COPY requirements.txt .
-
-RUN pip install --user -r requirements.txt
-
-COPY . .
+#CMD ["airflow","airflow", "webserver", "--port", "8080"]
+#CMD ["airflow","airflow", "webserver", "--port", "8080"]

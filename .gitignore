@@ -1,6 +1,5 @@
 #Test files
 *.ipynb
-*.sh
 
 #Folders
 /data
@@ -10,3 +9,7 @@ src/spark/__pycache__
 src/spark/layers/stage/__pycache__
 src/spark/layers/universal/__pycache__
 src/spark/parameters/__pycache__
+
+/_old/
+airflow/logs/
+airflow/dags/__pycache__/
