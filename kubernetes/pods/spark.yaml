@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark
+  labels:
+    type: ETL
+    app: spark-app 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-app
+  template:
+    metadata:
+      labels:
+        app: spark-app
+    spec:
+      initContainers:
+      - name: git-clone
+        image: alpine/git
+        #args:
+        #  - clone
+        #  - --single-branch
+        #  - --branch develop
+        #  - <github-repo-url>
+        #  - /data
+        volumeMounts:
+          - name: git-repo
+            mountPath: /data
+      containers:
+      - name: spark
+        image: mgarcia92/spark:v1
+        #command: ["/path/to/spark/bin/spark-submit"]
+        #args: ["/data/your-spark-app.py"]
+        volumeMounts:
+          - name: git-repo
+            mountPath: /data
+          - name: spark-config
+            mountPath: /path/to/spark/conf
+      volumes:
+      - name: git-repo
+        emptyDir: {}
+      - name: spark-config
+        configMap:
+          name: spark-config

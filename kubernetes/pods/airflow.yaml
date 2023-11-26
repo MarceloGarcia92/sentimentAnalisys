@@ -13,7 +13,7 @@ spec:
       - name: AIRFLOW_HOME
         value: /opt/airflow/
     args: ["pip", "install", "apache-airflow"]
-    command: ["bash", "-c", "airflow db init && airflow webserver && airflow users create -e marcelo.garcia.c92@gmail.com -f marcelo -l garcia -p pwd -r Admin -u mgarcia"]
+    command: ["bash", "-c", "airflow db init && airflow webserver && airflow scheduler && airflow users create -e marcelo.garcia.c92@gmail.com -f marcelo -l garcia -p pwd -r Admin -u mgarcia"]
     ports:
     - containerPort: 8080
     #livenessProbe:

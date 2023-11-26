@@ -20,7 +20,7 @@ spec:
   - port: 8080
     protocol: TCP
     targetPort: 8080
-    nodePort: 30000
+    nodePort: 30001
   selector:
     type: orchestation
   sessionAffinity: None
