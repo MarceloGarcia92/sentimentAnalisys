@@ -30,6 +30,8 @@ spec:
       containers:
       - name: spark
         image: mgarcia92/spark:v1
+        ports:
+          - containerPort: 7077
         #command: ["/path/to/spark/bin/spark-submit"]
         #args: ["/data/your-spark-app.py"]
         volumeMounts:

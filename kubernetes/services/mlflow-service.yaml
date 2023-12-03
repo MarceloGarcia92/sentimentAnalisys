@@ -10,7 +10,7 @@ spec:
   - port: 5000
     protocol: TCP
     targetPort: 5000
-    NodePort: 30002
+    nodePort: 30002
   selector:
     type: model-storage
   type: NodePort

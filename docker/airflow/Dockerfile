@@ -2,7 +2,7 @@ FROM python:3.8-slim-buster
 
 ENV AIRFLOW_HOME /usr/local/airflow
 
-RUN pip install --no-cache-dir apache-airflow
+RUN pip install --no-cache-dir apache-airflow && pip install apache-airflow-providers-apache-spark
 
 #EXPOSE 8080
 

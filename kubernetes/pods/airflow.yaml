@@ -8,7 +8,7 @@ spec:
   restartPolicy: Always
   containers:
   - name: airflow
-    image: apache/airflow:latest
+    image: mgarcia92/airflow:v1
     env: 
       - name: AIRFLOW_HOME
         value: /opt/airflow/
