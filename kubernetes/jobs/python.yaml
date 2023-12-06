@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ml-pipeline-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: ml-pipeline
+        image: python:3.8
+        command: ["python", "-c", "import script; script.run_pipeline()"]
+        env:
+        - name: MLFLOW_TRACKING_URI
+          value: "http://mlflow:5000"
+      restartPolicy: Never
+  backoffLimit: 4
