@@ -6,13 +6,14 @@ metadata:
     type: model-storage
   name: mlflow-service
 spec:
+  type: LoadBalancer
   ports:
   - port: 5000
     protocol: TCP
     targetPort: 5000
-    nodePort: 30002
+    #nodePort: 30002
   selector:
     type: model-storage
-  type: NodePort
+  #type: NodePort
 status:
   loadBalancer: {}

@@ -6,7 +6,7 @@ metadata:
   name: spark-pi
   namespace: spark-apps
 spec:
-  type: Scala
+  type: Python
   mode: cluster
   image: mgarcia92/spark:v2
   imagePullPolicy: Always
@@ -15,6 +15,11 @@ spec:
   sparkVersion: "3.1.1"
   restartPolicy:
     type: Never
+  #monitoring:
+  #  exposeDriverMetrics: true
+  #  exposeExecutorMetrics: true
+  #  prometheus:
+  #    jmxExporterJar: "/var/spark-data/spark-jars/jmx_prometheus_javaagent-0.11.0.jar"
   volumes:
     - name: "test-volume"
       hostPath:

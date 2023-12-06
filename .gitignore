@@ -13,3 +13,5 @@ src/spark/parameters/__pycache__
 /_old/
 airflow/logs/
 airflow/dags/__pycache__/
+
+docker/spark-3.5.0-bin-hadoop3

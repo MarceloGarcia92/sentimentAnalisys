@@ -15,17 +15,17 @@ spec:
       labels:
         app: spark-app
     spec:
-      initContainers:
-      - name: git-clone
-        image: alpine/git
+      #initContainers:
+      #- name: git-clone
+      #  image: alpine/git
         #args:
         #  - clone
         #  - --single-branch
         #  - --branch develop
         #  - <github-repo-url>
         #  - /data
-        volumeMounts:
-          - name: git-repo
+      #  volumeMounts:
+      #    - name: git-repo
             mountPath: /data
       containers:
       - name: spark

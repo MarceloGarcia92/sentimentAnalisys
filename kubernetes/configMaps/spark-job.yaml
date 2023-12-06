@@ -1,0 +1,19 @@
+apiVersion: v1
+data:
+  job.py: |-
+    from pyspark.sql import SparkSession
+
+    def main():
+        spark = SparkSession.builder.appName("example-job").getOrCreate()
+        print(spark)
+        # Your Spark job logic here
+
+    if __name__ == "__main__":
+        main()
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-12-05T23:47:10Z"
+  name: spark-job
+  namespace: default
+  resourceVersion: "22779"
+  uid: 0ddadbd1-90f6-4b0d-9606-d66f7603e5ae

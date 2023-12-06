@@ -9,9 +9,9 @@ metadata:
   resourceVersion: "40622"
   uid: 4b7d0d6e-a785-4eee-8b73-726864206f30
 spec:
-  clusterIP: 10.105.61.82
-  clusterIPs:
-  - 10.105.61.82
+  #clusterIP: 10.105.61.82
+  #clusterIPs:
+  #- 10.105.61.82
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
