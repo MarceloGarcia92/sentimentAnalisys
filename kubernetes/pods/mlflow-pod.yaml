@@ -11,7 +11,7 @@ spec:
   initContainers:
     - name: git-clone
       image: alpine/git
-      command: ["git", "clone", "https://github.com/yourusername/yourrepository.git", "/repo"]
+      command: ["git", "clone", "--single-branch", "--branch", "develop", "https://github.com/MarceloGarcia92/sentimentAnalisys.git", "/repo"]
       volumeMounts:
       - name: git-repo
         mountPath: /repo
@@ -20,6 +20,13 @@ spec:
     image: mgarcia92/mlflow:v1
     ports:
     - containerPort: 5000
+    readinessProbe:
+      exec:
+        command:
+        - cat
+        - /mlflow/src
+      initialDelaySeconds: 10
+      periodSeconds: 5
     volumeMounts:
     - name: git-repo
       mountPath: /mlflow
