@@ -30,3 +30,10 @@ spec:
     volumeMounts:
     - name: git-repo
       mountPath: /mlflow
+
+
+
+#gitRepo: -> Warning: spec.volumes[0].gitRepo: deprecated in v1.11
+  #repository: https://github.com/MarceloGarcia92/sentimentAnalisys.git
+  #revision: develop
+  #directory: .
