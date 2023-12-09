@@ -2,16 +2,11 @@
 *.ipynb
 
 #Folders
-/data
 src/__pycache__
 src/models/sentiment/__pycache__
-src/spark/__pycache__
-src/spark/layers/stage/__pycache__
-src/spark/layers/universal/__pycache__
-src/spark/parameters/__pycache__
+src/src_spark/__pycache__
+src/src_spark/layers/stage/__pycache__
+src/src_spark/layers/universal/__pycache__
+src/src_spark/parameters/__pycache__
 
 /_old/
-airflow/logs/
-airflow/dags/__pycache__/
-
-docker/spark-3.5.0-bin-hadoop3

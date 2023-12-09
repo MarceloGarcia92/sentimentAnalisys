@@ -1,6 +1,6 @@
-from src.spark.conn import spark_conn
-from src.spark.parameters.connection_param import jdbc_url, connection_properties
-from src.models.sentiment.parametros import *
+from src_spark.conn import spark_conn
+from src_spark.parameters.connection_param import jdbc_url, connection_properties
+from src_spark.parameters.data_param import *
 
 
 def create_tbl():
