@@ -8,5 +8,9 @@ src/src_spark/__pycache__
 src/src_spark/layers/stage/__pycache__
 src/src_spark/layers/universal/__pycache__
 src/src_spark/parameters/__pycache__
+src/src_pandas/__pycache__
+src/src_pandas/layers/stage/__pycache__
+src/src_pandas/layers/universal/__pycache__
+src/src_pandas/parameters/__pycache__
 
 /_old/
